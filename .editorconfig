@@ -1,0 +1,19 @@
+# ルートの設定
+root = true
+
+[*]
+# インデントの設定
+indent_style = space
+indent_size = 2
+# 改行コード
+end_of_line = lf
+# 文字コード
+charset = utf-8
+# 行末の空白
+trim_trailing_whitespace = true
+# 行末の改行
+insert_final_newline = true
+
+[*.md]
+# 行末の空白
+trim_trailing_whitespace = false
