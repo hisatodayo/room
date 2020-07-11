@@ -1,6 +1,6 @@
 <template lang="pug">
-  #app
-    p hello
+#app
+  router-view
 </template>
 
 <style lang="scss">
