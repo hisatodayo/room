@@ -34,6 +34,7 @@ div.wrap
         p ポイント
         p ポイント
         p ポイント
+    router-link(:to="'/logout'") ログアウト
 </template>
 
 <script>
