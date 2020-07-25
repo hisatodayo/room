@@ -34,15 +34,12 @@ div.wrap
         p ポイント
         p ポイント
         p ポイント
+    router-link(:to="'/logout'") ログアウト
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld'
 export default {
-  name: 'Top',
-  components: {
-    HelloWorld
-  }
+  name: 'Top'
 }
 </script>
 
