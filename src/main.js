@@ -5,7 +5,19 @@ import router from './router'
 import store from './store'
 
 import axios from 'axios'
+import Echo from 'laravel-echo'
+import Pusher from 'pusher-js'
+
 import env from '@/utils/env'
+
+window.Pusher = Pusher
+
+Vue.prototype.$Echo = new Echo({
+  broadcaster: 'pusher',
+  key: env.PUSHER_APP_KEY,
+  cluster: env.PUSHER_APP_CLUSTER,
+  encrypted: true
+})
 
 Vue.config.productionTip = false
 

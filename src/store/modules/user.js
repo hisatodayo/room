@@ -3,22 +3,24 @@ const state = {
     id: '',
     name: '',
     email: '',
-    password: ''
+    password: '',
+    created_at: '',
+    updated_at: ''
   }
 }
 
 const getters = {
-  getUserId({ id }) {
-    return id
+  getUserId({ userInfo }) {
+    return userInfo.id
   },
-  getUserName({ name }) {
-    return name
+  getUserName({ userInfo }) {
+    return userInfo.name
   },
-  getUserEmail({ email }) {
-    return email
+  getUserEmail({ userInfo }) {
+    return userInfo.email
   },
-  getUserPassword({ password }) {
-    return password
+  getUserPassword({ userInfo }) {
+    return userInfo.password
   }
 }
 
