@@ -34,7 +34,8 @@ div.wrap
         p ポイント
         p ポイント
         p ポイント
-    router-link(:to="'/logout'") ログアウト
+    router-link.anchor(:to="'/chat'") チャット
+    router-link.anchor(:to="'/logout'") ログアウト
 </template>
 
 <script>
@@ -65,5 +66,11 @@ export default {
    }
 .itemContent {
   display: none;
+}
+.anchor {
+  color: #fff;
+  text-decoration: underline;
+  display: block;
+  margin-top: 10px;
 }
 </style>

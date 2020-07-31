@@ -1,5 +1,9 @@
 const API_URL = process.env.VUE_APP_API_URL
+const PUSHER_APP_KEY = process.env.VUE_APP_PUSHER_APP_KEY
+const PUSHER_APP_CLUSTER = process.env.VUE_APP_PUSHER_APP_CLUSTER
 
 export default {
-  API_URL
+  API_URL,
+  PUSHER_APP_KEY,
+  PUSHER_APP_CLUSTER
 }

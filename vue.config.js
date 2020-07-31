@@ -13,6 +13,6 @@ function addStyleResource (rule) {
     .options({
       patterns: [
         path.resolve(__dirname, './src/assets/scss/config.scss'),
-      ],
+      ]
     })
 }
