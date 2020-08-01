@@ -4,6 +4,8 @@ import Top from '@/views/Top'
 
 import store from '@/store'
 
+import env from '@/utils/env'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -54,6 +56,15 @@ router.beforeEach(async (to, from, next) => {
   const user = await store.dispatch('user/checkLogin')
 
   if (/\/login\/?/.test(to.path) || /\/register\/?/.test(to.path)) {
+    next()
+    return
+  }
+
+  const isLocal = env.NODE_ENV === 'local' ? true : false
+  const apiUrlIsDev = env.API_URL === 'https://room.shungry.jp/api'
+    ? true
+    : false
+  if (isLocal && apiUrlIsDev) {
     next()
     return
   }
