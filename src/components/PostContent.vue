@@ -1,19 +1,49 @@
 <template lang="pug">
   div.wrap
-    PostContentTalk(
-      v-for="item in 5" :key="item.id"
+    div.inner
+      PostContentTalk(
+        v-for="(msg, index) in messages"
+        :name="msg.user.name"
+        :body="msg.body"
       )
 </template>
 
 <script>
-  import PostContentTalk from '@/components/PostContentTalk.vue'
+import PostContentTalk from '@/components/PostContentTalk.vue'
 
-  export default {
-    name: 'PostContent',
-    components: {
-      PostContentTalk
+import { mapGetters } from 'vuex'
+
+export default {
+  name: 'PostContent',
+  components: {
+    PostContentTalk
+  },
+  data() {
+    return {
+      messages: []
+    }
+  },
+  computed: {
+    ...mapGetters('user', ['getUserId', 'getUserName'])
+  },
+  mounted() {
+    this.getMessages()
+
+    this.$Echo.channel('chat')
+      .listen('MessageCreated', () => {
+        this.getMessages()
+      })
+  },
+  methods: {
+    getMessages() {
+      const url = 'chat'
+      this.$axios.get(url)
+        .then(response => {
+          this.messages = response.data
+        })
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -23,5 +53,8 @@
     background: #fff;
     border-radius: 6px;
     padding: 10px;
+    height: 454px;
+    overflow: scroll;
+    white-space: nowrap;
   }
 </style>

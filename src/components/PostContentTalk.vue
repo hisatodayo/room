@@ -5,22 +5,64 @@
         img(
           src="@/assets/img/thum.jpg"
         )
-      p.item_head_name hisato
+      p.item_head_name {{ name }}
       p.item_head_skill beginner
-    div.item_asset
-      video(
-        src="@/assets/post/post_1.mp4"
-        muted
-        autoplay
-        loop
-      )
-    p.item_lead 宮崎ちゅーぶううう
+    //- div.item_asset
+    //-   video(
+    //-     src="@/assets/post/post_1.mp4"
+    //-     muted
+    //-     autoplay
+    //-     loop
+    //-   )
+    p.item_lead {{ body }}
 </template>
 
 <script>
-  export default {
-    name: 'PostContentTalk'
+import { mapGetters } from 'vuex'
+
+export default {
+  name: 'PostContentTalk',
+  props: [
+    'name',
+    'body'
+  ],
+  data() {
+    return {
+      messages: []
+    }
+  },
+  computed: {
+    ...mapGetters('user', ['getUserId', 'getUserName'])
+  },
+  mounted() {
+    this.getMessages()
+
+    this.$Echo.channel('chat')
+      .listen('MessageCreated', () => {
+        this.getMessages()
+      })
+  },
+  methods: {
+    getMessages() {
+      const url = 'chat'
+      this.$axios.get(url)
+        .then(response => {
+          this.messages = response.data
+        })
+    },
+    send() {
+      const url = 'chat'
+      const params = {
+        user_id: this.getUserId,
+        message: this.message
+      }
+      this.$axios.post(url, params)
+        .then(() => {
+          this.message = ''
+        })
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -16,7 +16,7 @@ div
             v-for="(point, pointIndex) in area.pointArray"
             :key="point"
           )
-            router-link.anchor(:to="'/chat'") {{point}}
+            router-link.anchor(:to="'/post'") {{point}}
 </template>
 <script>
 import Header from '@/components/Header'
