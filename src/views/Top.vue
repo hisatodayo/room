@@ -1,76 +1,104 @@
 <template lang="pug">
-div.wrap
-  //- ヘッダ
-  h1.main [チャットルーム選択画面]
-  ul.list
-    li.item
-    div.itemHead 千葉県北側
-      div.itemContent
-        p ポイント
-        p ポイント
-        p ポイント
-        p ポイント
-    div.itemHead 千葉県南側
-      div.itemContent
-        p ポイント
-        p ポイント
-        p ポイント
-        p ポイント
-    div.itemHead 神奈川県
-      div.itemContent
-        p ポイント
-        p ポイント
-        p ポイント
-        p ポイント
-    div.itemHead 茨城県
-      div.itemContent
-        p ポイント
-        p ポイント
-        p ポイント
-        p ポイント
-    div.itemHead 大阪府
-      div.itemContent
-        p ポイント
-        p ポイント
-        p ポイント
-        p ポイント
-    router-link.anchor(:to="'/chat'") チャット
-    router-link.anchor(:to="'/logout'") ログアウト
+div
+  Header
+  .contents
+    h2.ttl room一覧
+    ul.chatList
+      li.chatList_item(
+        v-for="(area, areaIndex) in areaArray"
+        :key="area.areaName"
+        @click="toggleChatList(area.areaName)"
+      ) {{area.areaName}}
+        ul.chatList_item_toggle(
+          v-if="area.pointArray.length !== 0 && activeArea[area.areaName].active"
+        )
+          li.chatList_item_toggle_item(
+            v-for="(point, pointIndex) in area.pointArray"
+            :key="point"
+          )
+            router-link.anchor(:to="'/chat'") {{point}}
 </template>
-
 <script>
+import Header from '@/components/Header'
 export default {
-  name: 'Top'
+  name: 'Top',
+  components: {
+    Header
+  },
+  data() {
+    return {
+      areaArray: [
+        {
+          areaName: '千葉北',
+          pointArray: [
+            '飯岡マンション下',
+            '飯岡信号下',
+            '椎名安太郎',
+            'かんぽ前',
+            '吉崎浜',
+            '野手浜',
+            '今泉',
+            '堀川浜',
+            '本須賀',
+            '作田',
+            '片貝漁港',
+            '片貝新堤',
+            '豊海',
+            '白子',
+            '中里',
+            '一宮',
+            'サンライズ周辺',
+            '東浪見',
+            '志田下',
+            '太東',
+            '夷隅',
+            '大原'
+          ]
+        }
+      ],
+      activeArea: {}
+    }
+  },
+  created: function () {
+    this.areaArray.forEach(area => {
+      this.$set(this.activeArea, area.areaName, {'active': false})
+    })
+  },
+  methods: {
+    toggleChatList: function(area) {
+      this.activeArea[area].active = !this.activeArea[area].active
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.wrap {
-  background-color:  #07597c;
+.ttl {
+  text-align: center;
+  color: #f1a483;
 }
- .main {
-   text-align: center;
-   color: #f1a483;
- }
- .list{
-   padding: 20px;
-   list-style: none;
- }
- .itemHead {
-    padding: 0.5em 1em;
-    margin: 2em 0;
-    color: #0a0a09;
+.contents {
+  width: 95vw;
+  margin: 10px auto 0;
+  padding: 10px;
+  background: #fff;
+}
+.chatList {
+  margin-top: 15px;
+  &_item {
+    display: block;
+    padding: 5px;
     background: #f1a483;
-    border-bottom: solid 6px #cdb1ec;
-    border-radius: 9px;
-   }
-.itemContent {
-  display: none;
+    &_toggle {
+      margin-top: 10px;
+      padding: 5px;
+      background: #fff;
+    }
+  }
 }
 .anchor {
-  color: #fff;
+  color: #333;
   text-decoration: underline;
   display: block;
-  margin-top: 10px;
 }
 </style>
