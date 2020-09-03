@@ -50,6 +50,6 @@ table {
   border-spacing: 0;
 }
 body {
-  background-color:  #07597c;
+  background-color:  $dark-color;
 }
 </style>

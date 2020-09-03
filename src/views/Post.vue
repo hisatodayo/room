@@ -1,19 +1,19 @@
 <template lang="pug">
   div.post
-    PostHeader
+    Header
     PostContent
-    PostInputArea
+    PostInputArea.postInputArea
 </template>
 
 <script>
-  import PostHeader from '@/components/PostHeader.vue'
+  import Header from '@/components/Header.vue'
   import PostContent from '@/components/PostContent.vue'
   import PostInputArea from '@/components/PostInputArea.vue'
 
   export default {
   name: 'post',
   components: {
-    PostHeader,
+    Header,
     PostContent,
     PostInputArea
   }
@@ -25,6 +25,13 @@
     width: 100%;
     max-width: 768px;
     margin: auto;
-    background: #07597c;
+    background: $dark-color;
+  }
+  .postInputArea {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 </style>

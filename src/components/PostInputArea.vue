@@ -38,13 +38,11 @@ export default {
 
 <style lang="scss" scoped>
 .postInputArea {
-  width: 100%;
-  background: #f1a483;
-  margin-top: 20px;
+  background: $main-color;
   padding: 10px;
 }
 .textarea {
-  background: #fff;
+  background: $light-color;
   border-radius: 4px;
   display: inline-block;
   vertical-align: middle;
@@ -53,7 +51,7 @@ export default {
 }
 .button {
   display: inline-block;
-  background: #fff;
+  background: $light-color;
   vertical-align: middle;
   margin-left: 10px;
   padding: 2px 5px;

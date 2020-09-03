@@ -75,29 +75,30 @@ export default {
 <style lang="scss" scoped>
 .ttl {
   text-align: center;
-  color: #f1a483;
+  color: $text-color;
 }
 .contents {
   width: 95vw;
   margin: 10px auto 0;
   padding: 10px;
-  background: #fff;
+  background: $main-color;
 }
 .chatList {
   margin-top: 15px;
   &_item {
     display: block;
     padding: 5px;
-    background: #f1a483;
+    background: $sub-color;
+    color: $text-color;
     &_toggle {
       margin-top: 10px;
       padding: 5px;
-      background: #fff;
+      background: $light-color;
     }
   }
 }
 .anchor {
-  color: #333;
+  color: $dark-color;
   text-decoration: underline;
   display: block;
 }

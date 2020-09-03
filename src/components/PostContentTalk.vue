@@ -5,8 +5,8 @@
         img(
           src="@/assets/img/thum.jpg"
         )
-      p.item_head_name {{ name }}
-      p.item_head_skill beginner
+      BaseText.item_head_name(:text="name")
+      BaseText.item_head_skill(:text="'beginner'") 
     //- div.item_asset
     //-   video(
     //-     src="@/assets/post/post_1.mp4"
@@ -14,14 +14,20 @@
     //-     autoplay
     //-     loop
     //-   )
-    p.item_lead {{ body }}
+    BaseText.item_lead(:text='body')
 </template>
 
 <script>
+
+import BaseText from '@/components/BaseText.vue'
+
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'PostContentTalk',
+  components: {
+    BaseText
+  },
   props: [
     'name',
     'body'

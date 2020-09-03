@@ -49,8 +49,8 @@ export default {
 <style lang="scss" scoped>
   .wrap {
     width: 95%;
-    margin: 10px auto 0;
-    background: #fff;
+    margin: 50px auto 0;
+    background: $light-color;
     border-radius: 6px;
     padding: 10px;
     height: 454px;
