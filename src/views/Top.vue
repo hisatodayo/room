@@ -2,7 +2,7 @@
 div
   Header
   .contents
-    h2.ttl room一覧
+    h2.ttl room list
     ul.chatList
       li.chatList_item(
         v-for="(area, areaIndex) in areaArray"
@@ -54,6 +54,37 @@ export default {
             '夷隅',
             '大原'
           ]
+        },
+        {
+          areaName: '千葉南',
+          pointArray: [
+            'マルキ',
+            'J’s前',
+            '白渚',
+            '花篭前',
+            '千歳',
+            '千倉',
+            '平砂浦ファミリーパーク下'
+          ]
+        },
+        {
+          areaName: '湘南',
+          pointArray: [
+            '由比ガ浜',
+            '七里ガ浜正面',
+            '鎌高前',
+            '鵠沼',
+            '水族館前',
+            '地下道前',
+            '辻堂正面',
+            '辻堂第2駐車場前',
+            'チサン',
+            'パーク',
+            '平塚生コン前',
+            '大磯',
+            '大磯源二',
+            '湯河原吉浜'
+          ]
         }
       ],
       activeArea: {}
@@ -76,24 +107,37 @@ export default {
 .ttl {
   text-align: center;
   color: $text-color;
+  line-height: 30px;
+  span {
+    display: inline-block;
+  }
 }
 .contents {
   width: 95vw;
   margin: 10px auto 0;
   padding: 10px;
   background: $main-color;
+  border-radius: 6px;
 }
 .chatList {
-  margin-top: 15px;
+  margin-top: 5px;
   &_item {
     display: block;
-    padding: 5px;
+    padding: 15px 10px 10px;
     background: $sub-color;
-    color: $text-color;
-    &_toggle {
+    color: $dark-color;
+    border-radius: 6px;
+    &:nth-child(n+2) {
       margin-top: 10px;
-      padding: 5px;
+    }
+    &_toggle {
+      margin-top: 5px;
+      padding: 10px;
       background: $light-color;
+      border-radius: 6px;
+      &_item {
+        padding: 5px 0;
+      }
     }
   }
 }

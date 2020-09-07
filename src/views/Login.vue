@@ -54,7 +54,6 @@ export default {
 }
 .title {
   font-size: 20px;
-  font-weight: bold;
   text-align: center;
 }
 .form {

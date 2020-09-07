@@ -17,7 +17,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  height: 30px;
+  height: 45px;
   background: $main-color;
   position: relative;
 }
@@ -26,9 +26,8 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: $text-color;
-  font-weight: bold;
-  font-size: 20px;
+  color: $sub-color;
+  font-size: 28px;
 }
 .menu {
   position: absolute;

@@ -97,7 +97,6 @@ export default {
       }
       &_name {
         font-size: 16px;
-        font-weight: bold;
         color: #fff;
       }
       &_skill {
@@ -127,7 +126,6 @@ export default {
       margin-top: 10px;
       font-size: 14px;
       color: #fff;
-      font-weight: bold;
       padding-left: 5px;
     }
   }
