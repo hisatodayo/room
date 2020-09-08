@@ -156,6 +156,7 @@ export default {
   border-radius: 3px;
   font-size: 16px;
   border: 1px solid #9E9E9E;
+  color: $text-color;
 }
 .error {
   color: #ff0000 !important;

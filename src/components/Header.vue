@@ -1,7 +1,10 @@
 <template lang="pug">
 div.header
   p.logo room
-  div.menu(@click="isActive = !isActive")
+  div.menu(
+    @click="isActive = !isActive"
+    v-if="menu"
+  )
     span
     span
     span
@@ -15,6 +18,13 @@ export default {
   data() {
     return {
       isActive: false
+    }
+  },
+  props: {
+    menu: {
+      type: Boolean,
+      default: true,
+      required: false
     }
   }
 }

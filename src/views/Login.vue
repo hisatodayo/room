@@ -1,5 +1,8 @@
 <template lang="pug">
 div.wrap
+  Header(
+    :menu="false"
+  )
   div.head
     h1.title ログイン
   TheForm.form(
@@ -12,12 +15,14 @@ div.wrap
 <script>
 import { mapGetters, mapActions } from 'vuex'
 
+import Header from '@/components/Header.vue'
 import TheForm from '@/components/TheForm'
 
 export default {
   name: 'Login',
   components: {
-    TheForm
+    TheForm,
+    Header
   },
   data() {
     return {
@@ -56,9 +61,11 @@ export default {
   font-size: 20px;
   font-weight: bold;
   text-align: center;
+  color: $text-color;
 }
 .form {
   width: 300px;
   margin: 30px auto;
+  color: $text-color;
 }
 </style>
