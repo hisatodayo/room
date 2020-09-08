@@ -1,10 +1,6 @@
 <template lang="pug">
-div.header
-  p.logo room
-  div.menu(
-    @click="isActive = !isActive"
-    v-if="menu"
-  )
+div.wrap
+  div.menu
     span
     span
     span
@@ -14,47 +10,20 @@ div.header
 
 <script>
 export default {
-  name: 'Header',
+  name: "HeaderMenu",
   data() {
     return {
       isActive: false
-    }
-  },
-  props: {
-    menu: {
-      type: Boolean,
-      default: true,
-      required: false
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.header {
-  height: 45px;
-  background: $main-color;
-  position: relative;
-}
-.logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: $sub-color;
-  font-size: 28px;
-}
-.anchor {
-  font-size: 10px;
-  color: $dark-color;
-}
 .menu {
   width: 20px;
   height: 16px;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translate(-50%, -50%);
+  position: relative;
 }
 span {
   display: block;
@@ -77,15 +46,15 @@ span {
   }
 }
 .content {
+  display: none;
   position: fixed;
-  top: 100%;
-  left: 0;
+  top: 100vh;
   width: 100%;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px 0;
   background: $light-color;
-  height: 60%;
   &.active {
-    transform: translateY(-100%);
+    top: auto;
+    bottom: 0;
   }
 }
 </style>
