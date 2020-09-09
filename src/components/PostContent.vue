@@ -49,11 +49,10 @@ export default {
 <style lang="scss" scoped>
   .wrap {
     width: 95%;
-    margin: 50px auto 0;
+    margin: 0 auto;
     background: $light-color;
     border-radius: 6px;
     padding: 10px;
-    height: 454px;
     overflow: scroll;
     white-space: nowrap;
   }

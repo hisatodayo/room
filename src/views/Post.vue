@@ -1,9 +1,9 @@
 <template lang="pug">
   div.post
-    Header(ref="header")
-    PostHead(ref="postHead")
-    PostContent(v-bind:style="postContentHeight")
-    PostInputArea.postInputArea(ref="postInputArea")
+    Header(ref='header')
+    PostHead(ref='postHead')
+    PostContent(v-bind:style='postContentHeight')
+    PostInputArea.postInputArea(ref='postInputArea')
 </template>
 
 <script>
@@ -30,12 +30,15 @@
   },
   methods: {
     matchHeight() { 
-      const header = this.$refs.header.clientHeight;
-      const postHead = this.$refs.postHead.clientHeight;
-      const postInputArea = this.$refs.postInputArea.clientHeight;
+      const header = this.$refs.header;
+      console.log('header', header)
+      const postHead = this.$refs.postHead.style.height;
+      console.log('postHead', postHead)
+      const postInputArea = this.$refs.postInputArea.style.height;
+      console.log('postInputArea', postInputArea)
       const heightString = header + postHead + postInputArea;
-      console.log(heightString)
-      // Vue.set(this.postContentHeight, 'height', heightString);
+      console.log('heightString', heightString)
+      this.set(this.postContentHeight, 'height', heightString);
     }
   }
 }
