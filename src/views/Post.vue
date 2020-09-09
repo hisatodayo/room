@@ -1,9 +1,9 @@
 <template lang="pug">
   div.post
-    Header(ref='header')
-    PostHead(ref='postHead')
-    PostContent(v-bind:style='postContentHeight')
-    PostInputArea.postInputArea(ref='postInputArea')
+    Header#Header
+    PostHead#postHead
+    PostContent(:style="{height:postContentHeight.height+'px'}")
+    PostInputArea#postInputArea.postInputArea
 </template>
 
 <script>
@@ -30,15 +30,12 @@
   },
   methods: {
     matchHeight() { 
-      const header = this.$refs.header;
-      console.log('header', header)
-      const postHead = this.$refs.postHead.style.height;
-      console.log('postHead', postHead)
-      const postInputArea = this.$refs.postInputArea.style.height;
-      console.log('postInputArea', postInputArea)
-      const heightString = header + postHead + postInputArea;
-      console.log('heightString', heightString)
-      this.set(this.postContentHeight, 'height', heightString);
+      const header = document.getElementById('Header').clientHeight;
+      const postHead = document.getElementById('postHead').clientHeight;
+      const postInputArea = document.getElementById('postInputArea').clientHeight;
+      const heightString = 'calc(100vh -'+ header + postHead + postInputArea + 'px)';
+      this.$set(this.postContentHeight, 'height', heightString);
+      console.log(this.postContentHeight.height)
     }
   }
 }
