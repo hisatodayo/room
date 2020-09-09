@@ -21,8 +21,6 @@
 
 import BaseText from '@/components/BaseText.vue'
 
-import { mapGetters } from 'vuex'
-
 export default {
   name: 'PostContentTalk',
   components: {
@@ -35,37 +33,6 @@ export default {
   data() {
     return {
       messages: []
-    }
-  },
-  computed: {
-    ...mapGetters('user', ['getUserId', 'getUserName'])
-  },
-  mounted() {
-    this.getMessages()
-
-    this.$Echo.channel('chat')
-      .listen('MessageCreated', () => {
-        this.getMessages()
-      })
-  },
-  methods: {
-    getMessages() {
-      const url = 'chat'
-      this.$axios.get(url)
-        .then(response => {
-          this.messages = response.data
-        })
-    },
-    send() {
-      const url = 'chat'
-      const params = {
-        user_id: this.getUserId,
-        message: this.message
-      }
-      this.$axios.post(url, params)
-        .then(() => {
-          this.message = ''
-        })
     }
   }
 }
