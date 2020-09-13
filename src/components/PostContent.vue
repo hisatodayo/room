@@ -5,6 +5,7 @@
         v-for="(msg, index) in messages"
         :name="msg.user.name"
         :body="msg.body"
+        :img="msg.image_path"
       )
 </template>
 

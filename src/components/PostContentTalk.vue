@@ -7,13 +7,16 @@
         )
       BaseText.item_head_name(:text="name")
       BaseText.item_head_skill(:text="'beginner'") 
-    //- div.item_asset
-    //-   video(
-    //-     src="@/assets/post/post_1.mp4"
-    //-     muted
-    //-     autoplay
-    //-     loop
-    //-   )
+    div.item_asset(v-if="img")
+      template(v-if="isImage(img)")
+        img(:src="assetsPath(img)")
+      tamplate(v-else)
+        video(
+          src="@/assets/post/post_1.mp4"
+          muted
+          autoplay
+          loop
+        )
     BaseText.item_lead(:text='body')
 </template>
 
@@ -28,11 +31,26 @@ export default {
   },
   props: [
     'name',
-    'body'
+    'body',
+    'img'
   ],
   data() {
     return {
       messages: []
+    }
+  },
+  computed: {
+    isImage() {
+      return filename => {
+        const regex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i
+        const test = regex.test(filename)
+        return test
+      }
+    },
+    assetsPath() {
+      return filename => {
+        return `http://localhost:8888/storage/points_images/${filename}`
+      }
     }
   }
 }

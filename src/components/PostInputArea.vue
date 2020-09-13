@@ -1,6 +1,10 @@
 <template lang="pug">
 div.postInputArea
   textarea.textarea(v-model="message")
+  input(
+    type="file"
+    @change="selectedFile"
+  )
   button.button(
     type="button"
     @click="send"
@@ -14,22 +18,38 @@ export default {
   name: 'PostInputArea',
   data() {
     return {
-      message: ''
+      message: '',
+      file: null
     }
   },
   computed: {
     ...mapGetters('user', ['getUserId'])
   },
   methods: {
+    selectedFile(e) {
+      // 選択された File の情報を保存しておく
+      e.preventDefault()
+      let files = e.target.files
+      this.file = files[0]
+    },
     send() {
       const url = 'chat'
-      const params = {
-        user_id: this.getUserId,
-        message: this.message
+      // FormData を利用して File を POST する
+      let formData = new FormData()
+      formData.append('user_id', this.getUserId)
+      if (this.file) {
+        formData.append('photo', this.file)
       }
-      this.$axios.post(url, params)
+      formData.append('message', this.message)
+      let config = {
+        headers: {
+          'content-type': 'multipart/form-data'
+        }
+      }
+      this.$axios.post(url, formData, config)
         .then(() => {
-          this.message = ''
+          this.message = '',
+          this.file = null
         })
     }
   }
