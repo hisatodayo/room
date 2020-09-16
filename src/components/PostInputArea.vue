@@ -1,14 +1,16 @@
 <template lang="pug">
 div.postInputArea
-  textarea.textarea(v-model="message")
-  input(
-    type="file"
-    @change="selectedFile"
-  )
+  label.fileBotton
+    <i class="fas fa-file-image"></i>
+    input.fileBotton_input(
+      type="file"
+      @change="selectedFile"
+    )
+  textarea.textarea(v-model="message" ref="adjust_textarea" @keydown="adjustHeight")
   button.button(
     type="button"
     @click="send"
-  ) 送信
+  ) <i class="fas fa-paper-plane"></i>
 </template>
 
 <script>
@@ -51,6 +53,15 @@ export default {
           this.message = '',
           this.file = null
         })
+    },
+    adjustHeight(){
+      const textarea = this.$refs.adjust_textarea
+      const resetHeight = new Promise(function(resolve) {
+        resolve(textarea.style.height = 'auto')
+      });
+      resetHeight.then(function(){
+        textarea.style.height = textarea.scrollHeight + 'px'
+      });
     }
   }
 }
@@ -60,21 +71,46 @@ export default {
 .postInputArea {
   background: $main-color;
   padding: 10px;
+  display: flex;
+  align-items: flex-end;
 }
 .textarea {
   background: $light-color;
   border-radius: 4px;
-  display: inline-block;
-  vertical-align: middle;
-  width: 85%;
-  padding: 10px 5px;
+  flex-basis: 75%;
+  margin-left: 2.5%;
+  resize: none;
+  font-size: 16px;
+  line-height: 1;
+  padding: 5px;
+  height: 30px;
 }
 .button {
-  display: inline-block;
   background: $light-color;
-  vertical-align: middle;
-  margin-left: 10px;
-  padding: 2px 5px;
+  margin-left: 2.5%;
+  flex-basis: 10%;
   border-radius: 4px;
+  height: 30px;
+  .fas {
+    display: block;
+    line-height: 30px;
+    text-align: center;
+    font-size: 18px;
+  }
+}
+.fileBotton {
+  flex-basis: 10%;
+  background: $sub-color;
+  border-radius: 4px;
+  height: 30px;
+  .fas {
+    display: block;
+    line-height: 30px;
+    text-align: center;
+    font-size: 22px;
+  }
+  &_input {
+    display: none;
+  }
 }
 </style>
