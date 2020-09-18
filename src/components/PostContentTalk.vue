@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.item
+  div.item(:class="{me: userId === myUserId}")
     div.item_head
       div.item_head_thum
         img(
@@ -12,12 +12,13 @@
         img(:src="assetsPath(img)")
       tamplate(v-else)
         video(
-          src="@/assets/post/post_1.mp4"
+          :src="assetsPath(img)"
           muted
           autoplay
           loop
         )
-    BaseText.item_lead(:text='body')
+    template(v-if="body")
+      BaseText.item_lead(:text='body')
 </template>
 
 <script>
@@ -32,7 +33,9 @@ export default {
   props: [
     'name',
     'body',
-    'img'
+    'img',
+    'userId',
+    'myUserId'
   ],
   data() {
     return {
@@ -52,16 +55,24 @@ export default {
         return `http://localhost:8888/storage/points_images/${filename}`
       }
     }
-  }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.$emit('scroll')
+    });
+  },
 }
 </script>
 
 <style lang="scss" scoped>
   .item {
-    max-width: 200px;
-    background: #07597c;
+    max-width: 280px;
+    background: $dark-color;
     border-radius: 6px;
     padding: 5px 10px;
+    &.me {
+      background: $sub-color;
+    }
     &:nth-child(n+2) {
       margin-top: 15px;
     }
@@ -94,17 +105,12 @@ export default {
       }
     }
     &_asset {
-      width: 125px;
-      height: 125px;
       overflow: hidden;
       position: relative;
       margin: 10px 0 0;
-      video {
-        display: block;
-        position: absolute;
-        top: 40%;
-        left: 90%;
-        transform: translate(-50%,-50%);
+      img,video {
+        height: 125px;
+        object-fit: cover;
       }
     }
     &_lead {

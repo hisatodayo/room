@@ -6,12 +6,14 @@
         :name="msg.user.name"
         :body="msg.body"
         :img="msg.image_path"
+        :userId="msg.user_id"
+        :myUserId="getUserId"
+        @scroll="scroll"
       )
 </template>
 
 <script>
 import PostContentTalk from '@/components/PostContentTalk.vue'
-
 import { mapGetters } from 'vuex'
 
 export default {
@@ -19,29 +21,15 @@ export default {
   components: {
     PostContentTalk
   },
-  data() {
-    return {
-      messages: []
-    }
-  },
+  props: ['messages'],
   computed: {
-    ...mapGetters('user', ['getUserId', 'getUserName'])
-  },
-  mounted() {
-    this.getMessages()
-
-    this.$Echo.channel('chat')
-      .listen('MessageCreated', () => {
-        this.getMessages()
-      })
+    ...mapGetters('user', ['getUserId'])
   },
   methods: {
-    getMessages() {
-      const url = 'chat'
-      this.$axios.get(url)
-        .then(response => {
-          this.messages = response.data
-        })
+    scroll() {
+      const element = document.getElementById('postContent');
+      const scrollHeight = element.scrollHeight;
+      element.scrollTop = scrollHeight
     }
   }
 }

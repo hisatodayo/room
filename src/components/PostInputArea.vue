@@ -1,14 +1,16 @@
 <template lang="pug">
 div.postInputArea
-  label.fileBotton
+  p.alertMsg(v-show="activeAlert") {{alertMsg}}
+  label.fileBotton(:class="{selected: file}")
     <i class="fas fa-file-image"></i>
     input.fileBotton_input(
       type="file"
       @change="selectedFile"
     )
-  textarea.textarea(v-model="message" ref="adjust_textarea" @keydown="adjustHeight")
+  textarea.textarea(v-model="message" ref="adjust_textarea" @keydown="adjustHeight" @focus="inputText")
   button.button(
     type="button"
+    :class="{active: this.activeSend}"
     @click="send"
   ) <i class="fas fa-paper-plane"></i>
 </template>
@@ -21,11 +23,16 @@ export default {
   data() {
     return {
       message: '',
-      file: null
+      file: null,
+      activeAlert: false,
+      alertMsg: ''
     }
   },
   computed: {
-    ...mapGetters('user', ['getUserId'])
+    ...mapGetters('user', ['getUserId']),
+    activeSend() {
+      return this.message || this.file
+    }
   },
   methods: {
     selectedFile(e) {
@@ -35,6 +42,10 @@ export default {
       this.file = files[0]
     },
     send() {
+      if (!this.activeSend) {
+        this.alert('入力してね!');
+        return 
+      }
       const url = 'chat'
       // FormData を利用して File を POST する
       let formData = new FormData()
@@ -62,6 +73,13 @@ export default {
       resetHeight.then(function(){
         textarea.style.height = textarea.scrollHeight + 'px'
       });
+    },
+    inputText() {
+      this.activeAlert = false;
+    },
+    alert(msg) {
+      this.activeAlert = true;
+      this.alertMsg = msg
     }
   }
 }
@@ -73,6 +91,7 @@ export default {
   padding: 10px;
   display: flex;
   align-items: flex-end;
+  flex-wrap: wrap;
 }
 .textarea {
   background: $light-color;
@@ -91,6 +110,9 @@ export default {
   flex-basis: 10%;
   border-radius: 4px;
   height: 30px;
+  &.active {
+    background: $yellow;
+  }
   .fas {
     display: block;
     line-height: 30px;
@@ -103,6 +125,24 @@ export default {
   background: $sub-color;
   border-radius: 4px;
   height: 30px;
+  position: relative;
+  &.selected {
+    &:after {
+      content: "1";
+      display: block;
+      text-align: center;
+      width: 15px;
+      height: 15px;
+      border: 3px solid $main-color;
+      background: $light-color;
+      color: $main-color;
+      border-radius: 50%;
+      position: absolute;
+      top: 0%;
+      right: 0%;
+      transform: translate(50%, -50%);
+    }
+  }
   .fas {
     display: block;
     line-height: 30px;
@@ -112,5 +152,12 @@ export default {
   &_input {
     display: none;
   }
+}
+.alertMsg {
+  flex-basis: 100%;
+  text-align: center;
+  color: #FC9D9D;
+  font-size: 14px;
+  padding-bottom: 5px;
 }
 </style>

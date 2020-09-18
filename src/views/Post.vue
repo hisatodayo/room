@@ -1,8 +1,11 @@
 <template lang="pug">
   div.post
     Header#Header
-    PostHead#postHead
-    PostContent.postContent(:style="postContentHeight")
+    PostHead(:images="images")#postHead
+    PostContent.postContent#postContent(
+      :style="postContentHeight"
+      :messages="messages"
+    )
     PostInputArea#postInputArea.postInputArea
 </template>
 
@@ -22,11 +25,30 @@
   },
   data() {
     return {
-      postContentHeight: {}
+      postContentHeight: {},
+      messages: []
     }
   },
+  computed: {
+    images() {
+      const result = this.messages.filter(item => {
+         return item.image_path
+      })
+      return result
+    }
+  },
+  created() {
+    this.getMessages()
+
+    this.$Echo.channel('chat')
+      .listen('MessageCreated', () => {
+        this.getMessages()
+      })
+  },
   mounted() {
-    this.setPostContentHeight()
+    this.$nextTick(() => {
+      this.setPostContentHeight()
+    });
   },
   methods: {
     setPostContentHeight() { 
@@ -36,6 +58,13 @@
       const matchResult = header + postHead + postInputArea
       const heightString = 'calc(95vh - '+ matchResult + 'px)';
       this.$set(this.postContentHeight, 'height', heightString);
+    },
+    getMessages() {
+      const url = 'chat'
+      this.$axios.get(url)
+        .then(response => {
+          this.messages = response.data
+        })
     }
   }
 }
