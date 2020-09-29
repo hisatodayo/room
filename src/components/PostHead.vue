@@ -51,8 +51,7 @@ export default {
 
 <style lang="scss" scoped>
 .postHead {
-  background: $main-color;
-  margin-top: 10px;
+  background: $third-color;
   padding: 10px;
   overflow-x: scroll;
   overflow-y: hidden;

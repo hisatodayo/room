@@ -67,11 +67,11 @@ export default {
 <style lang="scss" scoped>
   .item {
     max-width: 280px;
-    background: $dark-color;
+    background: $forth-color;
     border-radius: 6px;
     padding: 5px 10px;
     &.me {
-      background: $sub-color;
+      background: $my-color;
     }
     &:nth-child(n+2) {
       margin-top: 15px;

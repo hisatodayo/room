@@ -46,6 +46,6 @@ table {
   border-spacing: 0;
 }
 body {
-  background-color:  $dark-color;
+  background-color:  $forth-color;
 }
 </style>

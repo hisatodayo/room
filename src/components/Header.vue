@@ -41,12 +41,12 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: $sub-color;
+  color: $logo-color;
   font-size: 28px;
 }
 .anchor {
   font-size: 10px;
-  color: $dark-color;
+  color: $forth-color;
 }
 .menu {
   width: 20px;

@@ -111,7 +111,7 @@ export default {
   border-radius: 4px;
   height: 30px;
   &.active {
-    background: $yellow;
+    background: $my-color;
   }
   .fas {
     display: block;
@@ -134,7 +134,7 @@ export default {
       width: 15px;
       height: 15px;
       border: 3px solid $main-color;
-      background: $light-color;
+      background: $warning-color;
       color: $main-color;
       border-radius: 50%;
       position: absolute;
@@ -156,7 +156,7 @@ export default {
 .alertMsg {
   flex-basis: 100%;
   text-align: center;
-  color: #FC9D9D;
+  color: $warning-color;
   font-size: 14px;
   padding-bottom: 5px;
 }

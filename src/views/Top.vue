@@ -125,7 +125,7 @@ export default {
     display: block;
     padding: 15px 10px 10px;
     background: $sub-color;
-    color: $dark-color;
+    color: $forth-color;
     border-radius: 6px;
     &:nth-child(n+2) {
       margin-top: 10px;
@@ -142,7 +142,7 @@ export default {
   }
 }
 .anchor {
-  color: $dark-color;
+  color: $forth-color;
   text-decoration: underline;
   display: block;
 }
