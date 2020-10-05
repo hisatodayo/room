@@ -1,12 +1,21 @@
 <template lang="pug">
   div.post
     Header#Header
-    PostHead(:images="images")#postHead
+    PostHead#postHead(
+      :images="images"
+      @showImgModal="showImgModal"
+    )
     PostContent.postContent#postContent(
       :style="postContentHeight"
       :messages="messages"
+      @showImgModal="showImgModal"
     )
     PostInputArea#postInputArea.postInputArea
+    imgModal(
+      v-show="imgModalActive"
+      :path="path"
+      @closeModal="closeModal"
+    )
 </template>
 
 <script>
@@ -14,6 +23,7 @@
   import PostContent from '@/components/PostContent.vue'
   import PostInputArea from '@/components/PostInputArea.vue'
   import PostHead from '@/components/PostHead.vue'
+  import imgModal from '@/components/imgModal.vue'
 
   export default {
   name: 'post',
@@ -21,12 +31,15 @@
     Header,
     PostContent,
     PostInputArea,
-    PostHead
+    PostHead,
+    imgModal
   },
   data() {
     return {
       postContentHeight: {},
-      messages: []
+      messages: [],
+      imgModalActive: false,
+      path: ""
     }
   },
   computed: {
@@ -65,6 +78,13 @@
         .then(response => {
           this.messages = response.data
         })
+    },
+    showImgModal(path) {
+      this.path = path;
+      this.imgModalActive = true;
+    },
+    closeModal() {
+      this.imgModalActive = false;
     }
   }
 }

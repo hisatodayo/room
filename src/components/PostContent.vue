@@ -6,9 +6,11 @@
         :name="msg.user.name"
         :body="msg.body"
         :img="msg.image_path"
+        :time="msg.created_at"
         :userId="msg.user_id"
         :myUserId="getUserId"
         @scroll="scroll"
+        @showImgModal="showImgModal"
       )
 </template>
 
@@ -30,6 +32,9 @@ export default {
       const element = document.getElementById('postContent');
       const scrollHeight = element.scrollHeight;
       element.scrollTop = scrollHeight
+    },
+    showImgModal(path) {
+      this.$emit("showImgModal", path)
     }
   }
 }

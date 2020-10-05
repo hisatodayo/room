@@ -4,15 +4,19 @@ div.postHead
     v-for="image in sortedImgArray"
     :key="image.id"
   )
-    template(v-if="isImage(image.image_path)")
-      img(:src="assetsPath(image.image_path)")
-    tamplate(v-else)
-      video(
-        :src="assetsPath(image.image_path)"
-        muted
-        autoplay
-        loop
-      )
+    img(
+      v-if="isImage(image.image_path)"
+      :src="assetsPath(image.image_path)"
+      @click="showImgModal(image.image_path)"
+    )
+    video(
+      v-else
+      :src="assetsPath(image.image_path)"
+      @click="showImgModal(image.image_path)"
+      muted
+      autoplay
+      loop
+    )
 </template>
 
 <script>
@@ -44,6 +48,11 @@ export default {
         return 0;
       });
       return ImgAray
+    }
+  },
+  methods: {
+    showImgModal(path) {
+      this.$emit("showImgModal", this.assetsPath(path))
     }
   }
 }
