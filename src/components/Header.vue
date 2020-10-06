@@ -33,7 +33,7 @@ export default {
 <style lang="scss" scoped>
 .header {
   height: 45px;
-  background: $main-color;
+  border-bottom: 2px solid $sub-color;
   position: relative;
 }
 .logo {
@@ -46,7 +46,7 @@ export default {
 }
 .anchor {
   font-size: 10px;
-  color: $forth-color;
+  color: $main-color;
 }
 .menu {
   width: 20px;
@@ -61,7 +61,7 @@ span {
   width: 20px;
   height: 2px;
   border-radius: 2px;
-  background: $light-color;
+  background: $sub-color;
   position: absolute;
   left: 0;
   right: 0;
@@ -82,7 +82,7 @@ span {
   left: 0;
   width: 100%;
   border-radius: 10px 10px 0 0;
-  background: $light-color;
+  background: $sub-color;
   height: 60%;
   &.active {
     transform: translateY(-100%);

@@ -60,7 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 .postHead {
-  background: $third-color;
+  border-bottom: 2px solid $sub-color;
   padding: 10px;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -71,7 +71,6 @@ export default {
     display: inline-block;
     width: 100px;
     height: 100%;
-    background: $light-color;
     border-radius: 6px;
     overflow: hidden;
     &:nth-child(n+2) {

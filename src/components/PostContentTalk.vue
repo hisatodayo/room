@@ -86,6 +86,7 @@ export default {
 
 <style lang="scss" scoped>
 .talkWrap {
+  border-bottom: 1px solid $sub-color;
   &:nth-child(n+2) {
     margin-top: 15px;
   }
@@ -94,15 +95,14 @@ export default {
   display: inline-block;
   vertical-align: bottom;
   margin-left: 10px;
+  color: $sub-color;
 }
 .item {
   display: inline-block;
   width: 280px;
-  background: $forth-color;
   border-radius: 6px;
   padding: 5px 10px;
   &.me {
-    background: $my-color;
   }
   &_head {
     display: flex;
@@ -110,7 +110,6 @@ export default {
     &_thum {
       width: 30px;
       height: 30px;
-      background: #fff;
       border-radius: 50%;
       overflow: hidden;
       margin-right: 10px;
@@ -121,12 +120,11 @@ export default {
     }
     &_name {
       font-size: 16px;
-      color: #fff;
+      color: $sub-color;
     }
     &_skill {
-      background: skyblue;
+      background: $my-color;
       border-radius: 4px;
-      color: #fff;
       font-size: 12px;
       padding: 2px 5px;
       margin-left: auto;
@@ -144,7 +142,7 @@ export default {
   &_lead {
     margin-top: 10px;
     font-size: 14px;
-    color: #fff;
+    color: $sub-color;
     padding-left: 5px;
   }
 }

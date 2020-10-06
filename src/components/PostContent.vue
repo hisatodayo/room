@@ -44,7 +44,6 @@ export default {
   .wrap {
     width: 95%;
     margin: 0 auto;
-    background: $light-color;
     border-radius: 6px;
     padding: 10px;
     overflow: scroll;

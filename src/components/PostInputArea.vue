@@ -87,14 +87,14 @@ export default {
 
 <style lang="scss" scoped>
 .postInputArea {
-  background: $main-color;
+  border-top: 1px solid $sub-color;
   padding: 10px;
   display: flex;
   align-items: flex-end;
   flex-wrap: wrap;
 }
 .textarea {
-  background: $light-color;
+  background: $third-color;
   border-radius: 4px;
   flex-basis: 75%;
   margin-left: 2.5%;
@@ -105,7 +105,7 @@ export default {
   height: 30px;
 }
 .button {
-  background: $light-color;
+  background: $third-color;
   margin-left: 2.5%;
   flex-basis: 10%;
   border-radius: 4px;
@@ -122,7 +122,7 @@ export default {
 }
 .fileBotton {
   flex-basis: 10%;
-  background: $sub-color;
+  background: $third-color;
   border-radius: 4px;
   height: 30px;
   position: relative;
@@ -135,7 +135,7 @@ export default {
       height: 15px;
       border: 3px solid $main-color;
       background: $warning-color;
-      color: $main-color;
+      color: $sub-color;
       border-radius: 50%;
       position: absolute;
       top: 0%;

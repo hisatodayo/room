@@ -106,7 +106,7 @@ export default {
 <style lang="scss" scoped>
 .ttl {
   text-align: center;
-  color: $text-color;
+  color: $sub-color;
   line-height: 30px;
   span {
     display: inline-block;
@@ -116,25 +116,21 @@ export default {
   width: 95vw;
   margin: 10px auto 0;
   padding: 10px;
-  background: $main-color;
-  border-radius: 6px;
 }
 .chatList {
   margin-top: 5px;
   &_item {
     display: block;
     padding: 15px 10px 10px;
-    background: $sub-color;
-    color: $forth-color;
-    border-radius: 6px;
+    border-bottom: 1px solid $sub-color;
+    color: $sub-color;
     &:nth-child(n+2) {
       margin-top: 10px;
     }
     &_toggle {
       margin-top: 5px;
       padding: 10px;
-      background: $light-color;
-      border-radius: 6px;
+      background: $third-color;
       &_item {
         padding: 5px 0;
       }
@@ -142,7 +138,7 @@ export default {
   }
 }
 .anchor {
-  color: $forth-color;
+  color: $sub-color;
   text-decoration: underline;
   display: block;
 }
